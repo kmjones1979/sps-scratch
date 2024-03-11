@@ -1,0 +1,13 @@
+{
+  "name": "sps-scratch",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ sps-scratch",
+    "create-local": "graph create --node http://localhost:8020/ sps-scratch",
+    "remove-local": "graph remove --node http://localhost:8020/ sps-scratch",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 sps-scratch",
+    "test": "graph test"
+  },
+  "dependencies": { "@graphprotocol/graph-cli": "0.68.5" }
+}
