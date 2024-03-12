@@ -4,6 +4,30 @@ type Contract @entity {
     "The timestamp when the contract was deployed"
     timestamp: String!
 
+    type: BigInt!
+
     "The block number of the contract deployment"
     blockNumber: BigInt!
+}
+
+type Block @entity {
+    id: ID!
+
+    blockNumber: BigInt!
+
+    "All of the transactions in the block"
+    transactions: [Transaction!] @derivedFrom(field: "block")
+}
+
+type Transaction @entity {
+    id: ID!
+
+    "The block number"
+    block: Block!
+
+    "The transaction type"
+    type: String!
+
+    "The transaction type name"
+    callType: String!
 }

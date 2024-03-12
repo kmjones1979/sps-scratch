@@ -673,10 +673,8 @@ export namespace sf {
           /**
            * Size is the size in bytes of the RLP encoding of the block according to Ethereum
            *  rules.
-           */
-          public size: u64;
-          /**
-           * Header contain's the block's header information like its parent hash, the merkel root hash
+           * uint64 size = 4;
+           *  Header contain's the block's header information like its parent hash, the merkel root hash
            *  and all other information the form a block.
            */
           public header: BlockHeader = new BlockHeader();
@@ -759,10 +757,6 @@ export namespace sf {
                 }
                 case 3: {
                   obj.number = decoder.uint64();
-                  break;
-                }
-                case 4: {
-                  obj.size = decoder.uint64();
                   break;
                 }
                 case 5: {
@@ -881,7 +875,6 @@ export namespace sf {
                 : 0;
             size +=
               this.number == 0 ? 0 : 1 + __proto.Sizer.uint64(this.number);
-            size += this.size == 0 ? 0 : 1 + __proto.Sizer.uint64(this.size);
 
             if (this.header != null) {
               const f: BlockHeader = this.header as BlockHeader;
@@ -963,10 +956,6 @@ export namespace sf {
             if (this.number != 0) {
               encoder.uint32(0x18);
               encoder.uint64(this.number);
-            }
-            if (this.size != 0) {
-              encoder.uint32(0x20);
-              encoder.uint64(this.size);
             }
 
             if (this.header != null) {
@@ -5143,10 +5132,8 @@ export namespace sf {
         /**
          * Size is the size in bytes of the RLP encoding of the block according to Ethereum
          *  rules.
-         */
-        public size: u64;
-        /**
-         * Header contain's the block's header information like its parent hash, the merkel root hash
+         * uint64 size = 4;
+         *  Header contain's the block's header information like its parent hash, the merkel root hash
          *  and all other information the form a block.
          */
         public header: BlockHeader = new BlockHeader();
@@ -5229,10 +5216,6 @@ export namespace sf {
               }
               case 3: {
                 obj.number = decoder.uint64();
-                break;
-              }
-              case 4: {
-                obj.size = decoder.uint64();
                 break;
               }
               case 5: {
@@ -5348,7 +5331,6 @@ export namespace sf {
               ? 1 + __proto.Sizer.varint64(this.hash.length) + this.hash.length
               : 0;
           size += this.number == 0 ? 0 : 1 + __proto.Sizer.uint64(this.number);
-          size += this.size == 0 ? 0 : 1 + __proto.Sizer.uint64(this.size);
 
           if (this.header != null) {
             const f: BlockHeader = this.header as BlockHeader;
@@ -5430,10 +5412,6 @@ export namespace sf {
           if (this.number != 0) {
             encoder.uint32(0x18);
             encoder.uint64(this.number);
-          }
-          if (this.size != 0) {
-            encoder.uint32(0x20);
-            encoder.uint64(this.size);
           }
 
           if (this.header != null) {
@@ -9577,10 +9555,8 @@ export namespace sf {
         /**
          * Size is the size in bytes of the RLP encoding of the block according to Ethereum
          *  rules.
-         */
-        public size: u64;
-        /**
-         * Header contain's the block's header information like its parent hash, the merkel root hash
+         * uint64 size = 4;
+         *  Header contain's the block's header information like its parent hash, the merkel root hash
          *  and all other information the form a block.
          */
         public header: BlockHeader = new BlockHeader();
@@ -9663,10 +9639,6 @@ export namespace sf {
               }
               case 3: {
                 obj.number = decoder.uint64();
-                break;
-              }
-              case 4: {
-                obj.size = decoder.uint64();
                 break;
               }
               case 5: {
@@ -9782,7 +9754,6 @@ export namespace sf {
               ? 1 + __proto.Sizer.varint64(this.hash.length) + this.hash.length
               : 0;
           size += this.number == 0 ? 0 : 1 + __proto.Sizer.uint64(this.number);
-          size += this.size == 0 ? 0 : 1 + __proto.Sizer.uint64(this.size);
 
           if (this.header != null) {
             const f: BlockHeader = this.header as BlockHeader;
@@ -9864,10 +9835,6 @@ export namespace sf {
           if (this.number != 0) {
             encoder.uint32(0x18);
             encoder.uint64(this.number);
-          }
-          if (this.size != 0) {
-            encoder.uint32(0x20);
-            encoder.uint64(this.size);
           }
 
           if (this.header != null) {
@@ -14010,10 +13977,8 @@ export namespace sf {
       /**
        * Size is the size in bytes of the RLP encoding of the block according to Ethereum
        *  rules.
-       */
-      public size: u64;
-      /**
-       * Header contain's the block's header information like its parent hash, the merkel root hash
+       * uint64 size = 4;
+       *  Header contain's the block's header information like its parent hash, the merkel root hash
        *  and all other information the form a block.
        */
       public header: BlockHeader = new BlockHeader();
@@ -14095,10 +14060,6 @@ export namespace sf {
             }
             case 3: {
               obj.number = decoder.uint64();
-              break;
-            }
-            case 4: {
-              obj.size = decoder.uint64();
               break;
             }
             case 5: {
@@ -14214,7 +14175,6 @@ export namespace sf {
             ? 1 + __proto.Sizer.varint64(this.hash.length) + this.hash.length
             : 0;
         size += this.number == 0 ? 0 : 1 + __proto.Sizer.uint64(this.number);
-        size += this.size == 0 ? 0 : 1 + __proto.Sizer.uint64(this.size);
 
         if (this.header != null) {
           const f: BlockHeader = this.header as BlockHeader;
@@ -14296,10 +14256,6 @@ export namespace sf {
         if (this.number != 0) {
           encoder.uint32(0x18);
           encoder.uint64(this.number);
-        }
-        if (this.size != 0) {
-          encoder.uint32(0x20);
-          encoder.uint64(this.size);
         }
 
         if (this.header != null) {
@@ -18392,6 +18348,920 @@ export namespace sf {
     } // BlockRef
   } // v2
 } // sf
+export namespace eth {
+  export namespace block_meta {
+    export namespace v1 {
+      export class BlockMeta {
+        public number: u64;
+        public hash: string = "";
+        public parent_hash: string = "";
+
+        // Decodes BlockMeta from an ArrayBuffer
+        static decode(buf: ArrayBuffer): BlockMeta {
+          return BlockMeta.decodeDataView(new DataView(buf));
+        }
+
+        // Decodes BlockMeta from a DataView
+        static decodeDataView(view: DataView): BlockMeta {
+          const decoder = new __proto.Decoder(view);
+          const obj = new BlockMeta();
+
+          while (!decoder.eof()) {
+            const tag = decoder.tag();
+            const number = tag >>> 3;
+
+            switch (number) {
+              case 1: {
+                obj.number = decoder.uint64();
+                break;
+              }
+              case 2: {
+                obj.hash = decoder.string();
+                break;
+              }
+              case 3: {
+                obj.parent_hash = decoder.string();
+                break;
+              }
+
+              default:
+                decoder.skipType(tag & 7);
+                break;
+            }
+          }
+          return obj;
+        } // decode BlockMeta
+
+        public size(): u32 {
+          let size: u32 = 0;
+
+          size += this.number == 0 ? 0 : 1 + __proto.Sizer.uint64(this.number);
+          size +=
+            this.hash.length > 0
+              ? 1 + __proto.Sizer.varint64(this.hash.length) + this.hash.length
+              : 0;
+          size +=
+            this.parent_hash.length > 0
+              ? 1 +
+                __proto.Sizer.varint64(this.parent_hash.length) +
+                this.parent_hash.length
+              : 0;
+
+          return size;
+        }
+
+        // Encodes BlockMeta to the ArrayBuffer
+        encode(): ArrayBuffer {
+          return changetype<ArrayBuffer>(
+            StaticArray.fromArray<u8>(this.encodeU8Array())
+          );
+        }
+
+        // Encodes BlockMeta to the Array<u8>
+        encodeU8Array(
+          encoder: __proto.Encoder = new __proto.Encoder(new Array<u8>())
+        ): Array<u8> {
+          const buf = encoder.buf;
+
+          if (this.number != 0) {
+            encoder.uint32(0x8);
+            encoder.uint64(this.number);
+          }
+          if (this.hash.length > 0) {
+            encoder.uint32(0x12);
+            encoder.uint32(this.hash.length);
+            encoder.string(this.hash);
+          }
+          if (this.parent_hash.length > 0) {
+            encoder.uint32(0x1a);
+            encoder.uint32(this.parent_hash.length);
+            encoder.string(this.parent_hash);
+          }
+
+          return buf;
+        } // encode BlockMeta
+      } // BlockMeta
+    } // v1
+  } // block_meta
+  export namespace v1 {
+    export class BlockMeta {
+      public number: u64;
+      public hash: string = "";
+      public parent_hash: string = "";
+
+      // Decodes BlockMeta from an ArrayBuffer
+      static decode(buf: ArrayBuffer): BlockMeta {
+        return BlockMeta.decodeDataView(new DataView(buf));
+      }
+
+      // Decodes BlockMeta from a DataView
+      static decodeDataView(view: DataView): BlockMeta {
+        const decoder = new __proto.Decoder(view);
+        const obj = new BlockMeta();
+
+        while (!decoder.eof()) {
+          const tag = decoder.tag();
+          const number = tag >>> 3;
+
+          switch (number) {
+            case 1: {
+              obj.number = decoder.uint64();
+              break;
+            }
+            case 2: {
+              obj.hash = decoder.string();
+              break;
+            }
+            case 3: {
+              obj.parent_hash = decoder.string();
+              break;
+            }
+
+            default:
+              decoder.skipType(tag & 7);
+              break;
+          }
+        }
+        return obj;
+      } // decode BlockMeta
+
+      public size(): u32 {
+        let size: u32 = 0;
+
+        size += this.number == 0 ? 0 : 1 + __proto.Sizer.uint64(this.number);
+        size +=
+          this.hash.length > 0
+            ? 1 + __proto.Sizer.varint64(this.hash.length) + this.hash.length
+            : 0;
+        size +=
+          this.parent_hash.length > 0
+            ? 1 +
+              __proto.Sizer.varint64(this.parent_hash.length) +
+              this.parent_hash.length
+            : 0;
+
+        return size;
+      }
+
+      // Encodes BlockMeta to the ArrayBuffer
+      encode(): ArrayBuffer {
+        return changetype<ArrayBuffer>(
+          StaticArray.fromArray<u8>(this.encodeU8Array())
+        );
+      }
+
+      // Encodes BlockMeta to the Array<u8>
+      encodeU8Array(
+        encoder: __proto.Encoder = new __proto.Encoder(new Array<u8>())
+      ): Array<u8> {
+        const buf = encoder.buf;
+
+        if (this.number != 0) {
+          encoder.uint32(0x8);
+          encoder.uint64(this.number);
+        }
+        if (this.hash.length > 0) {
+          encoder.uint32(0x12);
+          encoder.uint32(this.hash.length);
+          encoder.string(this.hash);
+        }
+        if (this.parent_hash.length > 0) {
+          encoder.uint32(0x1a);
+          encoder.uint32(this.parent_hash.length);
+          encoder.string(this.parent_hash);
+        }
+
+        return buf;
+      } // encode BlockMeta
+    } // BlockMeta
+  } // v1
+  export namespace event {
+    export namespace v1 {
+      export class Events {
+        public events: Array<Event> = new Array<Event>();
+
+        // Decodes Events from an ArrayBuffer
+        static decode(buf: ArrayBuffer): Events {
+          return Events.decodeDataView(new DataView(buf));
+        }
+
+        // Decodes Events from a DataView
+        static decodeDataView(view: DataView): Events {
+          const decoder = new __proto.Decoder(view);
+          const obj = new Events();
+
+          while (!decoder.eof()) {
+            const tag = decoder.tag();
+            const number = tag >>> 3;
+
+            switch (number) {
+              case 1: {
+                const length = decoder.uint32();
+                obj.events.push(
+                  Event.decodeDataView(
+                    new DataView(
+                      decoder.view.buffer,
+                      decoder.pos + decoder.view.byteOffset,
+                      length
+                    )
+                  )
+                );
+                decoder.skip(length);
+
+                break;
+              }
+
+              default:
+                decoder.skipType(tag & 7);
+                break;
+            }
+          }
+          return obj;
+        } // decode Events
+
+        public size(): u32 {
+          let size: u32 = 0;
+
+          for (let n: i32 = 0; n < this.events.length; n++) {
+            const messageSize = this.events[n].size();
+
+            if (messageSize > 0) {
+              size += 1 + __proto.Sizer.varint64(messageSize) + messageSize;
+            }
+          }
+
+          return size;
+        }
+
+        // Encodes Events to the ArrayBuffer
+        encode(): ArrayBuffer {
+          return changetype<ArrayBuffer>(
+            StaticArray.fromArray<u8>(this.encodeU8Array())
+          );
+        }
+
+        // Encodes Events to the Array<u8>
+        encodeU8Array(
+          encoder: __proto.Encoder = new __proto.Encoder(new Array<u8>())
+        ): Array<u8> {
+          const buf = encoder.buf;
+
+          for (let n: i32 = 0; n < this.events.length; n++) {
+            const messageSize = this.events[n].size();
+
+            if (messageSize > 0) {
+              encoder.uint32(0xa);
+              encoder.uint32(messageSize);
+              this.events[n].encodeU8Array(encoder);
+            }
+          }
+
+          return buf;
+        } // encode Events
+      } // Events
+
+      export class Event {
+        public address: string = "";
+        public topics: Array<string> = new Array<string>();
+        public tx_hash: string = "";
+
+        // Decodes Event from an ArrayBuffer
+        static decode(buf: ArrayBuffer): Event {
+          return Event.decodeDataView(new DataView(buf));
+        }
+
+        // Decodes Event from a DataView
+        static decodeDataView(view: DataView): Event {
+          const decoder = new __proto.Decoder(view);
+          const obj = new Event();
+
+          while (!decoder.eof()) {
+            const tag = decoder.tag();
+            const number = tag >>> 3;
+
+            switch (number) {
+              case 1: {
+                obj.address = decoder.string();
+                break;
+              }
+              case 2: {
+                obj.topics.push(decoder.string());
+                break;
+              }
+              case 3: {
+                obj.tx_hash = decoder.string();
+                break;
+              }
+
+              default:
+                decoder.skipType(tag & 7);
+                break;
+            }
+          }
+          return obj;
+        } // decode Event
+
+        public size(): u32 {
+          let size: u32 = 0;
+
+          size +=
+            this.address.length > 0
+              ? 1 +
+                __proto.Sizer.varint64(this.address.length) +
+                this.address.length
+              : 0;
+
+          size += __size_string_repeated(this.topics);
+
+          size +=
+            this.tx_hash.length > 0
+              ? 1 +
+                __proto.Sizer.varint64(this.tx_hash.length) +
+                this.tx_hash.length
+              : 0;
+
+          return size;
+        }
+
+        // Encodes Event to the ArrayBuffer
+        encode(): ArrayBuffer {
+          return changetype<ArrayBuffer>(
+            StaticArray.fromArray<u8>(this.encodeU8Array())
+          );
+        }
+
+        // Encodes Event to the Array<u8>
+        encodeU8Array(
+          encoder: __proto.Encoder = new __proto.Encoder(new Array<u8>())
+        ): Array<u8> {
+          const buf = encoder.buf;
+
+          if (this.address.length > 0) {
+            encoder.uint32(0xa);
+            encoder.uint32(this.address.length);
+            encoder.string(this.address);
+          }
+
+          if (this.topics.length > 0) {
+            for (let n: i32 = 0; n < this.topics.length; n++) {
+              encoder.uint32(0x12);
+              encoder.uint32(this.topics[n].length);
+              encoder.string(this.topics[n]);
+            }
+          }
+
+          if (this.tx_hash.length > 0) {
+            encoder.uint32(0x1a);
+            encoder.uint32(this.tx_hash.length);
+            encoder.string(this.tx_hash);
+          }
+
+          return buf;
+        } // encode Event
+      } // Event
+    } // v1
+  } // event
+  export namespace v1 {
+    export class Events {
+      public events: Array<Event> = new Array<Event>();
+
+      // Decodes Events from an ArrayBuffer
+      static decode(buf: ArrayBuffer): Events {
+        return Events.decodeDataView(new DataView(buf));
+      }
+
+      // Decodes Events from a DataView
+      static decodeDataView(view: DataView): Events {
+        const decoder = new __proto.Decoder(view);
+        const obj = new Events();
+
+        while (!decoder.eof()) {
+          const tag = decoder.tag();
+          const number = tag >>> 3;
+
+          switch (number) {
+            case 1: {
+              const length = decoder.uint32();
+              obj.events.push(
+                Event.decodeDataView(
+                  new DataView(
+                    decoder.view.buffer,
+                    decoder.pos + decoder.view.byteOffset,
+                    length
+                  )
+                )
+              );
+              decoder.skip(length);
+
+              break;
+            }
+
+            default:
+              decoder.skipType(tag & 7);
+              break;
+          }
+        }
+        return obj;
+      } // decode Events
+
+      public size(): u32 {
+        let size: u32 = 0;
+
+        for (let n: i32 = 0; n < this.events.length; n++) {
+          const messageSize = this.events[n].size();
+
+          if (messageSize > 0) {
+            size += 1 + __proto.Sizer.varint64(messageSize) + messageSize;
+          }
+        }
+
+        return size;
+      }
+
+      // Encodes Events to the ArrayBuffer
+      encode(): ArrayBuffer {
+        return changetype<ArrayBuffer>(
+          StaticArray.fromArray<u8>(this.encodeU8Array())
+        );
+      }
+
+      // Encodes Events to the Array<u8>
+      encodeU8Array(
+        encoder: __proto.Encoder = new __proto.Encoder(new Array<u8>())
+      ): Array<u8> {
+        const buf = encoder.buf;
+
+        for (let n: i32 = 0; n < this.events.length; n++) {
+          const messageSize = this.events[n].size();
+
+          if (messageSize > 0) {
+            encoder.uint32(0xa);
+            encoder.uint32(messageSize);
+            this.events[n].encodeU8Array(encoder);
+          }
+        }
+
+        return buf;
+      } // encode Events
+    } // Events
+
+    export class Event {
+      public address: string = "";
+      public topics: Array<string> = new Array<string>();
+      public tx_hash: string = "";
+
+      // Decodes Event from an ArrayBuffer
+      static decode(buf: ArrayBuffer): Event {
+        return Event.decodeDataView(new DataView(buf));
+      }
+
+      // Decodes Event from a DataView
+      static decodeDataView(view: DataView): Event {
+        const decoder = new __proto.Decoder(view);
+        const obj = new Event();
+
+        while (!decoder.eof()) {
+          const tag = decoder.tag();
+          const number = tag >>> 3;
+
+          switch (number) {
+            case 1: {
+              obj.address = decoder.string();
+              break;
+            }
+            case 2: {
+              obj.topics.push(decoder.string());
+              break;
+            }
+            case 3: {
+              obj.tx_hash = decoder.string();
+              break;
+            }
+
+            default:
+              decoder.skipType(tag & 7);
+              break;
+          }
+        }
+        return obj;
+      } // decode Event
+
+      public size(): u32 {
+        let size: u32 = 0;
+
+        size +=
+          this.address.length > 0
+            ? 1 +
+              __proto.Sizer.varint64(this.address.length) +
+              this.address.length
+            : 0;
+
+        size += __size_string_repeated(this.topics);
+
+        size +=
+          this.tx_hash.length > 0
+            ? 1 +
+              __proto.Sizer.varint64(this.tx_hash.length) +
+              this.tx_hash.length
+            : 0;
+
+        return size;
+      }
+
+      // Encodes Event to the ArrayBuffer
+      encode(): ArrayBuffer {
+        return changetype<ArrayBuffer>(
+          StaticArray.fromArray<u8>(this.encodeU8Array())
+        );
+      }
+
+      // Encodes Event to the Array<u8>
+      encodeU8Array(
+        encoder: __proto.Encoder = new __proto.Encoder(new Array<u8>())
+      ): Array<u8> {
+        const buf = encoder.buf;
+
+        if (this.address.length > 0) {
+          encoder.uint32(0xa);
+          encoder.uint32(this.address.length);
+          encoder.string(this.address);
+        }
+
+        if (this.topics.length > 0) {
+          for (let n: i32 = 0; n < this.topics.length; n++) {
+            encoder.uint32(0x12);
+            encoder.uint32(this.topics[n].length);
+            encoder.string(this.topics[n]);
+          }
+        }
+
+        if (this.tx_hash.length > 0) {
+          encoder.uint32(0x1a);
+          encoder.uint32(this.tx_hash.length);
+          encoder.string(this.tx_hash);
+        }
+
+        return buf;
+      } // encode Event
+    } // Event
+  } // v1
+  export namespace transaction {
+    export namespace v1 {
+      export class Transactions {
+        public transactions: Array<Transaction> = new Array<Transaction>();
+
+        // Decodes Transactions from an ArrayBuffer
+        static decode(buf: ArrayBuffer): Transactions {
+          return Transactions.decodeDataView(new DataView(buf));
+        }
+
+        // Decodes Transactions from a DataView
+        static decodeDataView(view: DataView): Transactions {
+          const decoder = new __proto.Decoder(view);
+          const obj = new Transactions();
+
+          while (!decoder.eof()) {
+            const tag = decoder.tag();
+            const number = tag >>> 3;
+
+            switch (number) {
+              case 1: {
+                const length = decoder.uint32();
+                obj.transactions.push(
+                  Transaction.decodeDataView(
+                    new DataView(
+                      decoder.view.buffer,
+                      decoder.pos + decoder.view.byteOffset,
+                      length
+                    )
+                  )
+                );
+                decoder.skip(length);
+
+                break;
+              }
+
+              default:
+                decoder.skipType(tag & 7);
+                break;
+            }
+          }
+          return obj;
+        } // decode Transactions
+
+        public size(): u32 {
+          let size: u32 = 0;
+
+          for (let n: i32 = 0; n < this.transactions.length; n++) {
+            const messageSize = this.transactions[n].size();
+
+            if (messageSize > 0) {
+              size += 1 + __proto.Sizer.varint64(messageSize) + messageSize;
+            }
+          }
+
+          return size;
+        }
+
+        // Encodes Transactions to the ArrayBuffer
+        encode(): ArrayBuffer {
+          return changetype<ArrayBuffer>(
+            StaticArray.fromArray<u8>(this.encodeU8Array())
+          );
+        }
+
+        // Encodes Transactions to the Array<u8>
+        encodeU8Array(
+          encoder: __proto.Encoder = new __proto.Encoder(new Array<u8>())
+        ): Array<u8> {
+          const buf = encoder.buf;
+
+          for (let n: i32 = 0; n < this.transactions.length; n++) {
+            const messageSize = this.transactions[n].size();
+
+            if (messageSize > 0) {
+              encoder.uint32(0xa);
+              encoder.uint32(messageSize);
+              this.transactions[n].encodeU8Array(encoder);
+            }
+          }
+
+          return buf;
+        } // encode Transactions
+      } // Transactions
+
+      export class Transaction {
+        public from: string = "";
+        public to: string = "";
+        public hash: string = "";
+
+        // Decodes Transaction from an ArrayBuffer
+        static decode(buf: ArrayBuffer): Transaction {
+          return Transaction.decodeDataView(new DataView(buf));
+        }
+
+        // Decodes Transaction from a DataView
+        static decodeDataView(view: DataView): Transaction {
+          const decoder = new __proto.Decoder(view);
+          const obj = new Transaction();
+
+          while (!decoder.eof()) {
+            const tag = decoder.tag();
+            const number = tag >>> 3;
+
+            switch (number) {
+              case 1: {
+                obj.from = decoder.string();
+                break;
+              }
+              case 2: {
+                obj.to = decoder.string();
+                break;
+              }
+              case 3: {
+                obj.hash = decoder.string();
+                break;
+              }
+
+              default:
+                decoder.skipType(tag & 7);
+                break;
+            }
+          }
+          return obj;
+        } // decode Transaction
+
+        public size(): u32 {
+          let size: u32 = 0;
+
+          size +=
+            this.from.length > 0
+              ? 1 + __proto.Sizer.varint64(this.from.length) + this.from.length
+              : 0;
+          size +=
+            this.to.length > 0
+              ? 1 + __proto.Sizer.varint64(this.to.length) + this.to.length
+              : 0;
+          size +=
+            this.hash.length > 0
+              ? 1 + __proto.Sizer.varint64(this.hash.length) + this.hash.length
+              : 0;
+
+          return size;
+        }
+
+        // Encodes Transaction to the ArrayBuffer
+        encode(): ArrayBuffer {
+          return changetype<ArrayBuffer>(
+            StaticArray.fromArray<u8>(this.encodeU8Array())
+          );
+        }
+
+        // Encodes Transaction to the Array<u8>
+        encodeU8Array(
+          encoder: __proto.Encoder = new __proto.Encoder(new Array<u8>())
+        ): Array<u8> {
+          const buf = encoder.buf;
+
+          if (this.from.length > 0) {
+            encoder.uint32(0xa);
+            encoder.uint32(this.from.length);
+            encoder.string(this.from);
+          }
+          if (this.to.length > 0) {
+            encoder.uint32(0x12);
+            encoder.uint32(this.to.length);
+            encoder.string(this.to);
+          }
+          if (this.hash.length > 0) {
+            encoder.uint32(0x1a);
+            encoder.uint32(this.hash.length);
+            encoder.string(this.hash);
+          }
+
+          return buf;
+        } // encode Transaction
+      } // Transaction
+    } // v1
+  } // transaction
+  export namespace v1 {
+    export class Transactions {
+      public transactions: Array<Transaction> = new Array<Transaction>();
+
+      // Decodes Transactions from an ArrayBuffer
+      static decode(buf: ArrayBuffer): Transactions {
+        return Transactions.decodeDataView(new DataView(buf));
+      }
+
+      // Decodes Transactions from a DataView
+      static decodeDataView(view: DataView): Transactions {
+        const decoder = new __proto.Decoder(view);
+        const obj = new Transactions();
+
+        while (!decoder.eof()) {
+          const tag = decoder.tag();
+          const number = tag >>> 3;
+
+          switch (number) {
+            case 1: {
+              const length = decoder.uint32();
+              obj.transactions.push(
+                Transaction.decodeDataView(
+                  new DataView(
+                    decoder.view.buffer,
+                    decoder.pos + decoder.view.byteOffset,
+                    length
+                  )
+                )
+              );
+              decoder.skip(length);
+
+              break;
+            }
+
+            default:
+              decoder.skipType(tag & 7);
+              break;
+          }
+        }
+        return obj;
+      } // decode Transactions
+
+      public size(): u32 {
+        let size: u32 = 0;
+
+        for (let n: i32 = 0; n < this.transactions.length; n++) {
+          const messageSize = this.transactions[n].size();
+
+          if (messageSize > 0) {
+            size += 1 + __proto.Sizer.varint64(messageSize) + messageSize;
+          }
+        }
+
+        return size;
+      }
+
+      // Encodes Transactions to the ArrayBuffer
+      encode(): ArrayBuffer {
+        return changetype<ArrayBuffer>(
+          StaticArray.fromArray<u8>(this.encodeU8Array())
+        );
+      }
+
+      // Encodes Transactions to the Array<u8>
+      encodeU8Array(
+        encoder: __proto.Encoder = new __proto.Encoder(new Array<u8>())
+      ): Array<u8> {
+        const buf = encoder.buf;
+
+        for (let n: i32 = 0; n < this.transactions.length; n++) {
+          const messageSize = this.transactions[n].size();
+
+          if (messageSize > 0) {
+            encoder.uint32(0xa);
+            encoder.uint32(messageSize);
+            this.transactions[n].encodeU8Array(encoder);
+          }
+        }
+
+        return buf;
+      } // encode Transactions
+    } // Transactions
+
+    export class Transaction {
+      public from: string = "";
+      public to: string = "";
+      public hash: string = "";
+
+      // Decodes Transaction from an ArrayBuffer
+      static decode(buf: ArrayBuffer): Transaction {
+        return Transaction.decodeDataView(new DataView(buf));
+      }
+
+      // Decodes Transaction from a DataView
+      static decodeDataView(view: DataView): Transaction {
+        const decoder = new __proto.Decoder(view);
+        const obj = new Transaction();
+
+        while (!decoder.eof()) {
+          const tag = decoder.tag();
+          const number = tag >>> 3;
+
+          switch (number) {
+            case 1: {
+              obj.from = decoder.string();
+              break;
+            }
+            case 2: {
+              obj.to = decoder.string();
+              break;
+            }
+            case 3: {
+              obj.hash = decoder.string();
+              break;
+            }
+
+            default:
+              decoder.skipType(tag & 7);
+              break;
+          }
+        }
+        return obj;
+      } // decode Transaction
+
+      public size(): u32 {
+        let size: u32 = 0;
+
+        size +=
+          this.from.length > 0
+            ? 1 + __proto.Sizer.varint64(this.from.length) + this.from.length
+            : 0;
+        size +=
+          this.to.length > 0
+            ? 1 + __proto.Sizer.varint64(this.to.length) + this.to.length
+            : 0;
+        size +=
+          this.hash.length > 0
+            ? 1 + __proto.Sizer.varint64(this.hash.length) + this.hash.length
+            : 0;
+
+        return size;
+      }
+
+      // Encodes Transaction to the ArrayBuffer
+      encode(): ArrayBuffer {
+        return changetype<ArrayBuffer>(
+          StaticArray.fromArray<u8>(this.encodeU8Array())
+        );
+      }
+
+      // Encodes Transaction to the Array<u8>
+      encodeU8Array(
+        encoder: __proto.Encoder = new __proto.Encoder(new Array<u8>())
+      ): Array<u8> {
+        const buf = encoder.buf;
+
+        if (this.from.length > 0) {
+          encoder.uint32(0xa);
+          encoder.uint32(this.from.length);
+          encoder.string(this.from);
+        }
+        if (this.to.length > 0) {
+          encoder.uint32(0x12);
+          encoder.uint32(this.to.length);
+          encoder.string(this.to);
+        }
+        if (this.hash.length > 0) {
+          encoder.uint32(0x1a);
+          encoder.uint32(this.hash.length);
+          encoder.string(this.hash);
+        }
+
+        return buf;
+      } // encode Transaction
+    } // Transaction
+  } // v1
+} // eth
 export namespace example {
   export class Contracts {
     public contracts: Array<Contract> = new Array<Contract>();
@@ -18655,4 +19525,16 @@ function __sizeMapEntry_string_string(key: string, value: string): u32 {
       ? 1 + __proto.Sizer.varint64(value.length) + value.length
       : 0)
   );
+}
+
+// __size_string_repeated
+
+function __size_string_repeated(value: Array<string>): u32 {
+  let size: u32 = 0;
+
+  for (let n: i32 = 0; n < value.length; n++) {
+    size += 1 + __proto.Sizer.varint64(value[n].length) + value[n].length;
+  }
+
+  return size;
 }

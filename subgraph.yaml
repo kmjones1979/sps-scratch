@@ -10,6 +10,7 @@ dataSources:
           package:
               moduleName: map_block_full # https://github.com/streamingfast/substreams-explorers/blob/main/ethereum-explorer/src/map_block_full.rs
               file: ./ethereum-explorer-v0.1.2.spkg
+          startBlock: 10000000
       mapping:
           apiVersion: 0.0.7
           kind: substreams/graph-entities
